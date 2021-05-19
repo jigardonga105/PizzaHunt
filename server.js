@@ -10,11 +10,12 @@ app.get('/', (req, res) => {
 })
 
 //Set Template Engines
+app.use(express.static('public'));
 app.use(expressLayout);
 app.set('views', path.join(__dirname, '/resources/views'));
 app.set('view engine', 'ejs');
 
 
 app.listen(port, () => {
-    console.log(`Listing on port ${port}...`);
+    console.log(`Listing at port ${port}...`);
 })
