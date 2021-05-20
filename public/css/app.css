@@ -281,6 +281,10 @@ body {
   color: #232323;
 }
 
+.username {
+  background: #1efec0;
+}
+
 nav li:last-child a {
   background: #FE5F1E;
 }
@@ -346,4 +350,8 @@ section.login a:hover {
 .noty_theme__mint {
   border-radius: 50px !important;
   padding-left: 8px !important;
+}
+
+a.link {
+  color: #FE5F1E;
 }
