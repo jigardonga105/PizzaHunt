@@ -1,65 +1,58 @@
 {
     "cookie": {
         "originalMaxAge": 86400000,
-        "expires": "2021-05-21T07:15:40.292Z",
+        "expires": "2021-05-22T17:43:50.070Z",
         "httpOnly": true,
         "path": "/"
     },
     "flash": {},
+    "passport": { "user": "60a6a1d1e7d0646b348bd0fe" },
     "cart": {
-        "items": {
-            "5eee6671a27a66807cf2bea3": {
-                "item": {
-                    "_id": "5eee6671a27a66807cf2bea3",
-                    "name": "Marinara",
-                    "image": "pizza.png",
-                    "price": 300,
-                    "size": "medium"
+        "custID_60a63ef4aa1e538c78669d28_cart": {
+            "items": {
+                "5eee651f739f8c674fd736ee": {
+                    "item": {
+                        "_id": "5eee651f739f8c674fd736ee",
+                        "name": "Margherita",
+                        "image": "pizza.png",
+                        "price": 250,
+                        "size": "small"
+                    },
+                    "qty": 1
                 },
-                "qty": 1
+                "5eee6671a27a66807cf2bea3": {
+                    "item": {
+                        "_id": "5eee6671a27a66807cf2bea3",
+                        "name": "Marinara",
+                        "image": "pizza.png",
+                        "price": 300,
+                        "size": "medium"
+                    },
+                    "qty": 1
+                },
+                "5eee6692a27a66807cf2bea4": {
+                    "item": {
+                        "_id": "5eee6692a27a66807cf2bea4",
+                        "name": "Carbonara",
+                        "image": "pizza.png",
+                        "price": 200,
+                        "size": "small"
+                    },
+                    "qty": 1
+                },
+                "5eee66a5a27a66807cf2bea5": {
+                    "item": {
+                        "_id": "5eee66a5a27a66807cf2bea5",
+                        "name": "Americana",
+                        "image": "pizza.png",
+                        "price": 500,
+                        "size": "large"
+                    },
+                    "qty": 1
+                }
             },
-            "5eee651f739f8c674fd736ee": {
-                "item": {
-                    "_id": "5eee651f739f8c674fd736ee",
-                    "name": "Margherita",
-                    "image": "pizza.png",
-                    "price": 250,
-                    "size": "small"
-                },
-                "qty": 1
-            },
-            "5eee6717a27a66807cf2bea9": {
-                "item": {
-                    "_id": "5eee6717a27a66807cf2bea9",
-                    "name": "Pepperoni",
-                    "image": "pizza.png",
-                    "price": 500,
-                    "size": "medium"
-                },
-                "qty": 1
-            },
-            "5eee66c4a27a66807cf2bea6": {
-                "item": {
-                    "_id": "5eee66c4a27a66807cf2bea6",
-                    "name": "Chicken Mushroom",
-                    "image": "pizza.png",
-                    "price": 350,
-                    "size": "medium"
-                },
-                "qty": 1
-            },
-            "5eee66eea27a66807cf2bea8": {
-                "item": {
-                    "_id": "5eee66eea27a66807cf2bea8",
-                    "name": "Vegies pizza",
-                    "image": "pizza.png",
-                    "price": 600,
-                    "size": "large"
-                },
-                "qty": 2
-            }
-        },
-        "totalQty": 6,
-        "totalPrice": 2600
+            "totalQty": 4,
+            "totalPrice": 1250
+        }
     }
 }

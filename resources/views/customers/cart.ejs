@@ -1,12 +1,12 @@
 <section class="cart py-16">
-    <% if(session.cart) { %>
-        <div class="order container mx-auto w-1/2">
+    <% if(session.cart['custID_' + user._id + '_cart']) { %>
+        <div class="order container mx-auto xl:w-1/2">
             <div class="flex items-center border-b border-gray-300 pb-4">
                 <img src="/img/cart-black.png" alt="">
                 <h1 class="font-bold ml-4 text-2xl">Order summary</h1>
             </div>
             <div class="pizza-list">
-                <% for(let pizza of Object.values(session.cart.items)) { %>
+                <% for(let pizza of Object.values(session.cart['custID_' + user._id + '_cart'].items)) { %>
                     <div class="flex items-center my-8">
                         <img class="w-24" src="/img/<%= pizza.item.image %>" alt="">
                         <div class="flex-1 ml-4">
@@ -28,7 +28,7 @@
             <div class="text-right py-4">
                 <div>
                     <span class="text-lg font-bold">Total Amount:</span>
-                    <span class="amount text-2xl font-bold ml-2">₹<%= session.cart.totalPrice %></span>
+                    <span class="amount text-2xl font-bold ml-2">₹<%= session.cart['custID_' + user._id + '_cart'].totalPrice %></span>
                 </div>
                 <% if(user) { %>
                     <div>
