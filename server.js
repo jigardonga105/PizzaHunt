@@ -12,6 +12,7 @@ const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo')
 const passport = require('passport');
 const Emitter = require('events')
+const multer = require("multer");
 
 // Database connection:-
 // const url = 'mongodb://localhost/pizza';
@@ -55,6 +56,25 @@ app.use(flash())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+//Store Images
+var storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, 'public/uploadedImages');
+    },
+    filename: (req, file, callback) => {
+        const match = ["image/png", "image/jpeg"];
+
+        if (match.indexOf(file.mimetype) === -1) {
+            var message = `${file.originalname} is invalid. Only accept png/jpeg.`;
+            return callback(message, null);
+        }
+
+        var filename = file.fieldname + '_' + Date.now() + path.extname(file.originalname);
+        callback(null, filename);
+    }
+});
+app.use(multer({ storage: storage }).array("image", 5));
 
 // Global middleware 
 app.use((req, res, next) => {

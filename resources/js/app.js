@@ -3,6 +3,7 @@ import Noty from 'noty'
 import { initAdmin } from './admin'
 import moment from 'moment'
 import { initStripe } from './stripe'
+import { handleStore } from './seller';
 // import { Socket } from 'socket.io'
 
 let addToCart = document.querySelectorAll('.add-to-cart')
@@ -79,6 +80,8 @@ function updateStatus(order) {
 updateStatus(order)
 
 initStripe()
+
+handleStore()
 
 //Socket
 let socket = io();

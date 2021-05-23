@@ -504,3 +504,104 @@ section.status {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.add-store {
+  background: #F8F8F8;
+  height: 105vh;
+}
+
+.show-store {
+  background: #F8F8F8;
+}
+
+.store-image {
+  width: 500px;
+  height: 500px;
+}
+
+@media (max-width: 698px) {
+  .add-store {
+    flex-direction: column;
+  }
+
+  .add-store-null {
+    margin: 0 auto;
+  }
+
+  .add-store-adder {
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+}
+@media (max-width: 324px) {
+  .add-store {
+    width: 324px;
+  }
+}
+@media (max-width: 1308px) {
+  .show-store-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 843px) {
+  .show-store-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+@media (max-width: 488px) {
+  .show-store {
+    flex-direction: column-reverse;
+    width: 488px;
+  }
+
+  .show-store-add {
+    margin: 0 auto;
+  }
+
+  .show-store-list {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 990px) {
+  .store-details {
+    padding-left: 10px;
+  }
+
+  .store-details-img {
+    margin-right: 3rem;
+  }
+}
+@media (max-width: 775px) {
+  .store-details {
+    flex-direction: column;
+  }
+}
+@media (max-width: 530px) {
+  .store-item-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 400px) {
+  .store-items {
+    width: 100%;
+  }
+}
+@media (max-width: 268px) {
+  #stock {
+    width: 50%;
+  }
+
+  #changedprice {
+    width: 50%;
+  }
+}
+@media (max-width: 268px) {
+  .changedprice {
+    flex-direction: column;
+  }
+
+  .changedprice-btn {
+    width: 100px;
+  }
+}

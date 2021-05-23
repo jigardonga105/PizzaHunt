@@ -2223,11 +2223,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _stripe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./stripe */ "./resources/js/stripe.js");
+/* harmony import */ var _seller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./seller */ "./resources/js/seller.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2305,7 +2307,8 @@ function updateStatus(order) {
 }
 
 updateStatus(order);
-(0,_stripe__WEBPACK_IMPORTED_MODULE_4__.initStripe)(); //Socket
+(0,_stripe__WEBPACK_IMPORTED_MODULE_4__.initStripe)();
+(0,_seller__WEBPACK_IMPORTED_MODULE_5__.handleStore)(); //Socket
 
 var socket = io(); //Join
 
@@ -2334,6 +2337,49 @@ socket.on('orderUpdated', function (data) {
     progressBar: false
   }).show();
 });
+
+/***/ }),
+
+/***/ "./resources/js/seller.js":
+/*!********************************!*\
+  !*** ./resources/js/seller.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleStore": () => (/* binding */ handleStore)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var add_store = document.querySelector('#add-store');
+var show_store = document.querySelector('#show-store');
+var store = document.querySelector('#store');
+function handleStore() {
+  // This Script for Sliders
+  var myIndex = 0;
+  carousel();
+
+  function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+
+    myIndex++;
+
+    if (myIndex > x.length) {
+      myIndex = 1;
+    }
+
+    x[myIndex - 1].style.display = "block";
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+  }
+}
 
 /***/ }),
 
