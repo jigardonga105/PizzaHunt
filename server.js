@@ -74,7 +74,7 @@ var storage = multer.diskStorage({
         callback(null, filename);
     }
 });
-app.use(multer({ storage: storage }).array("image", 5));
+app.use(multer({ storage: storage }).any("image", 5));
 
 // Global middleware 
 app.use((req, res, next) => {
@@ -96,8 +96,9 @@ const server = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
 
-//Socket
 
+//===========================================================
+//==========================Socket==========================
 const io = require('socket.io')(server);
 io.on('connection', (socket) => {
     //join

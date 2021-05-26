@@ -1,0 +1,201 @@
+<% if(store) { %>
+
+    <% store.forEach( (item)=> { %>
+        <section class="item-details grid grid-cols-3 grid-center justify-center gap-20 pt-20">
+            <div class="item-img" style="width: 574px;">
+                <% for (const img of item.image) { %>
+                    <img class="itemSlider" src="../../../uploadedImages/<%= img.img %>" alt="">
+                    <% } %>
+            </div>
+
+            <div class="item-data flex flex-center justify-center flex-col" style="margin-left: 11rem;">
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Store Name:</strong>
+                    <%= item.storename %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Store Owner:</strong>
+                    <%= item.owner %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Contact Number:</strong>
+                    <%= item.phone %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Address:</strong>
+                    <%= item.address %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Country:</strong>
+                    <%= item.country %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Zip Code:</strong>
+                    <%= item.zipcode %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Description:</strong>
+                    <%= item.description %>
+                </span>
+            </div>
+
+            <div class="item-updating border-2 rounded item-data-change py-10 bg-gray-800 shadow-xl">
+                <div class="container w-56 mx-auto">
+                    <span class="font-bold py-3 px-3 bg-yellow-500 rounded">Update Store:</span>
+                    <br>
+                    <br>
+                    <!-- <input id="itemdata" type="hidden" value="<%= JSON.stringify(item) %>"> -->
+                    <!-- For Change Name: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Name:</span>
+                        <div class="flex changedname">
+                            <input name="changedname" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <!-- For Change Owner: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Owner:</span>
+                        <div class="flex changedowner">
+                            <input name="changedowner" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <!-- For Change Contact No: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Contact No.:</span>
+                        <div class="flex changedcontact">
+                            <input name="changedcontact" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <!-- For Change Address: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Address:</span>
+                        <div class="flex changedaddress">
+                            <input name="changedaddress" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <!-- For Change Country: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Country:</span>
+                        <div class="flex changedcountry">
+                            <input name="changedcountry" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <!-- For Change ZipCode: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Zip Code:</span>
+                        <div class="flex changedzip">
+                            <input name="changedzip" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <!-- For Change Desc.: -->
+                    <form action="/seller/updatestore/<%= item._id %>" method="POST">
+                        <span class="font-bold text-white">Change Description:</span>
+                        <div class="flex changeddesc">
+                            <input name="changeddesc" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mt-2" id="changename" type="text" placeholder="Name" required>
+                            <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </section>
+
+        <section class="item-details-Images flex justify-center">
+            <div class="shower-main-container w-8/12 flex flex-col justify-center border-2 rounded bg-gray-300 mt-20 pt-10 px-5 mx-auto">
+                <div class="mx-auto">
+                    <span class="font-bold py-3 px-3 bg-gray-800 rounded text-yellow-400">Product Images</span>
+                </div>
+                <div class="item-images-shower grid grid-cols-3 gap-10 mx-auto py-10">
+                    <% for (const img of item.image) { %>
+                        <div>
+                            <img class="rounded" src="../../../uploadedImages/<%= img.img %>" alt="item image" style="height: 13rem;">
+                            <button value="<%= img._id %>" data-item="<%= JSON.stringify(imageSet) %>" class="delete-img-btn changedprice-btn h-10 ml-24 mt-5 rounded text-black bg-yellow-500 font px-5 rounded focus:outline-none mx-auto" type="submit">
+                                Delete
+                            </button>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+            <div class="upload-more-img mt-20 border-2 w-72 h-44 p-5 bg-gray-800">
+                <form action="/store-add-img/<%= item._id %>" method="POST" enctype="multipart/form-data">
+                    <span class="font-bold text-white">Upload more Images:</span><br><br>
+                    <input name="image" multiple class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" id="username" type="file" required>
+                    <button class="changedprice-btn h-10 mt-2 ml-20 rounded text-black bg-yellow-500 font px-1 rounded focus:outline-none" type="submit">
+                        Upload
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <% }) %>
+            <% } %>
+
+                <script>
+                    var itemIndex = 0;
+                    itemSlider();
+
+                    function itemSlider() {
+                        var index;
+                        var x = document.getElementsByClassName("itemSlider");
+                        for (index = 0; index < x.length; index++) {
+                            x[index].style.display = "none";
+                        }
+                        itemIndex++;
+                        if (itemIndex > x.length) {
+                            itemIndex = 1
+                        }
+                        x[itemIndex - 1].style.display = "block";
+                        setTimeout(itemSlider, 2000); // Change image every 2 seconds
+                    }
+                </script>
+
+                <!-- <script>
+                    let itemdata = document.querySelector('#itemdata');
+                    // console.log(JSON.parse(itemdata.value));
+                    let item = JSON.parse(itemdata.value);
+                    let sizeOption1 = document.querySelector('#Small');
+                    let sizeOption2 = document.querySelector('#Medium');
+                    let sizeOption3 = document.querySelector('#Large');
+
+                    if (item.size === 'Small') {
+                        sizeOption1.setAttribute("selected", '');
+                    } else if (item.size === 'Medium') {
+                        sizeOption2.setAttribute("selected", '');
+                    } else {
+                        sizeOption3.setAttribute("selected", '');
+                    }
+
+                    let stockOption1 = document.querySelector('#in')
+                    let stockOption2 = document.querySelector('#out')
+
+                    if (item.stock === true) {
+                        stockOption1.setAttribute("selected", '');
+                    } else if (item.stock === false) {
+                        stockOption2.setAttribute("selected", '');
+                    }
+                </script> -->

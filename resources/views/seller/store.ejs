@@ -1,239 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Store</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
-    <style>
-        /* Seller Page CSS Style */
-        
-        .add-store {
-            background: #F8F8F8;
-            height: 105vh;
-        }
-        
-        .show-store {
-            background: #F8F8F8;
-        }
-        
-        .store-image {
-            width: 750px;
-            height: 500px;
-        }
-        
-        .store-img {
-            height: 100px;
-            width: 160px;
-        }
-        
-        .item-img {
-            width: 15rem;
-            height: 12rem;
-        }
-        
-        @media (max-width: 698px) {
-            .add-store {
-                flex-direction: column;
-            }
-            .add-store-null {
-                margin: 0 auto;
-            }
-            .add-store-adder {
-                margin: 0 auto;
-                margin-top: 40px;
-            }
-        }
-        
-        @media (max-width: 324px) {
-            .add-store {
-                width: 324px;
-            }
-        }
-        
-        @media screen and (max-width: 1308px) {
-            .show-store-list {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-        
-        @media screen and (max-width: 843px) {
-            .show-store-list {
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-            }
-        }
-        
-        @media screen and (max-width: 488px) {
-            .show-store {
-                flex-direction: column-reverse;
-                width: 488px;
-            }
-            .show-store-add {
-                margin: 0 auto;
-            }
-            .show-store-list {
-                margin: 0 auto;
-            }
-        }
-        
-        @media screen and (max-width: 990px) {
-            .store-details {
-                padding-left: 10px;
-            }
-            .store-details-img {
-                margin-right: 3rem;
-            }
-        }
-        
-        @media screen and (max-width: 775px) {
-            .store-details {
-                flex-direction: column;
-            }
-        }
-        
-        @media screen and (max-width: 530px) {
-            .store-item-list {
-                display: flex;
-                flex-direction: column;
-            }
-        }
-        
-        @media screen and (max-width: 400px) {
-            .store-items {
-                width: 100%;
-            }
-        }
-        
-        @media screen and (max-width: 268px) {
-            #stock {
-                width: 50%;
-            }
-            #changedprice {
-                width: 50%;
-            }
-        }
-        
-        @media screen and (max-width: 268px) {
-            .changedprice {
-                flex-direction: column;
-            }
-            .changedprice-btn {
-                width: 100px;
-            }
-        }
-        
-        @media screen and (max-width: 1048px) {
-            .your-store-header {
-                left: -6rem
-            }
-        }
-        
-        @media screen and (max-width: 1048px) {
-            .your-store-header {
-                left: -10rem
-            }
-        }
-        
-        @media screen and (max-width: 726px) {
-            .your-store-header {
-                left: -12rem
-            }
-        }
-        
-        @media screen and (max-width: 660px) {
-            .your-store-header {
-                width: 9rem
-            }
-        }
-        
-        @media screen and (min-width: 590px) {
-            .your-store-header {
-                position: absolute;
-            }
-        }
-        
-        @media screen and (max-width: 590px) {
-            .your-store-header {
-                position: relative;
-                top: 57rem;
-                left: -3rem;
-            }
-            .store-list-main {
-                flex-direction: column-reverse
-            }
-            .show-store-list {
-                margin-top: 70px;
-                margin: 0 auto;
-            }
-            .show-store-add {
-                margin: 0 auto;
-                margin-bottom: 60px;
-            }
-        }
-    </style>
-
-
-</head>
-
-<body>
-    <% if(!store) { %>
-        <section id="add-store" class="add-store flex justify-center">
-            <div class="add-store-null w-full max-w-xs mr-5 my-auto">
-                <span class="text-5xl text-yellow-600">
+<% if(!store) { %>
+    <section id="add-store" class="add-store flex justify-center">
+        <div class="add-store-null w-full max-w-xs mr-5 my-auto">
+            <span class="text-5xl text-yellow-600">
                     No Store found!
                 </span>
-                <br>
-                <br>
-                <span class="text-xl">
+            <br>
+            <br>
+            <span class="text-xl">
                     You could not create any store yet.
                 </span>
+        </div>
+        <div class="add-store-adder w-80 border rounded px-4 py-2 bg-white">
+            <div class="w-72 border bg-gray-700 text-xl rounded text-yellow-400 px-4 py-2 ml-auto mr-10">
+                <span class="">Add a new Store</span>
             </div>
-            <div class="add-store-adder w-80 border rounded px-4 py-2 bg-white">
-                <div class="w-72 border bg-gray-700 text-xl rounded text-yellow-400 px-4 py-2 ml-auto mr-10">
-                    <span class="">Add a new Store</span>
-                </div>
-                <form action="/add-store" method="POST" enctype="multipart/form-data">
-                    <% if(messages.error) { %>
-                        <span class="text-red-500 text-md">
+            <form action="/add-store" method="POST" enctype="multipart/form-data">
+                <% if(messages.error) { %>
+                    <span class="text-red-500 text-md">
                             <%= messages.error %>
                         </span>
-                        <% } %>
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                    <% } %>
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Store Name:
                                 </label>
-                                <input name="storename" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Store Name" required>
-                            </div>
+                            <input name="storename" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Store Name" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Store Owner Name:
                                 </label>
-                                <input name="storeownername" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Owner Name" required>
-                            </div>
+                            <input name="storeownername" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Owner Name" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Store Contact:
                                 </label>
-                                <input name="storecontact" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="tel" pattern="[0-9]{10}" placeholder="Enter Store Contact Number" required>
-                            </div>
+                            <input name="storecontact" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="tel" pattern="[0-9]{10}" placeholder="Enter Store Contact Number" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Store Address:
                                 </label>
-                                <input name="storeaddress" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Store Address" required>
-                            </div>
+                            <input name="storeaddress" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Store Address" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Country:
                                 </label>
-                                <select id="country" name="country" class="border w-72 rounded py-2 shadow">
+                            <select id="country" name="country" class="border w-72 rounded py-2 shadow">
                                     <option value="India">India</option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
@@ -490,162 +309,185 @@
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
-                            </div>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Zip Code:
                                 </label>
-                                <input name="storezip" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" maxlength="6" placeholder="Enter your State" required>
-                            </div>
+                            <input name="storezip" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" maxlength="6" placeholder="Enter your State" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Images:
                                 </label>
-                                <input name="image" multiple max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="file" required>
-                            </div>
+                            <input name="image" multiple max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="file" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label class="block text-black text-sm font-bold mb-2" for="username">
+                        <div class="mb-4">
+                            <label class="block text-black text-sm font-bold mb-2" for="username">
                                     Description:
                                 </label>
-                                <textarea name="storedesc" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Description About store" minlength="10" required></textarea>
-                            </div>
+                            <textarea name="storedesc" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Description About store" minlength="10" required></textarea>
+                        </div>
 
-                            <button class="rounded-full text-white bg-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button class="rounded-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                 Create Store
                             </button>
-                </form>
-            </div>
-        </section>
-        <% } else { %>
-            <% storeData.forEach( (str)=> { %>
-                <section id="store" class="store bg-gray-200">
-                    <div class="store-details pl-24 flex sm:justify-center border-2 rounded  py-5">
-                        <div class="store-details-img mr-24">
-                            <% for (const img of str.image) { %>
-                                <img class="mySlides store-image rounded mx-auto" src="../../uploadedImages/<%= img.img %>" width="100" height="100" alt="Store Image">
-                                <% } %>
-                        </div>
-                        <div class="flex flex-col justify-center mx-auto mt-5">
-                            <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Store Name:</strong>
+            </form>
+        </div>
+    </section>
+    <% } else { %>
+        <% storeData.forEach( (str)=> { %>
+            <section id="store" class="store bg-gray-200">
+                <div class="store-details pl-24 flex sm:justify-center border-2 rounded  py-5">
+                    <div class="store-details-img mr-24">
+                        <% for (const img of str.image) { %>
+                            <img class="mySlides store-image rounded mx-auto" src="../../uploadedImages/<%= img.img %>" width="100" height="100" alt="Store Image">
+                            <% } %>
+                    </div>
+                    <div class="flex flex-col justify-center mx-auto mt-5">
+                        <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Store Name:</strong>
                                 <%= str.storename%>
                             </span>
-                            <span class="w-80 bg-white rounded py-2 px-2"><strong>Owner Name:</strong>
+                        <span class="w-80 bg-white rounded py-2 px-2"><strong>Owner Name:</strong>
                                 <%= str.owner%>
                             </span>
-                            <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Contact Number:</strong>
+                        <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Contact Number:</strong>
                                 <%= str.phone%>
                             </span>
-                            <span class="w-80 bg-white rounded py-2 px-2"><strong>Store Address:</strong>
+                        <span class="w-80 bg-white rounded py-2 px-2"><strong>Store Address:</strong>
                                 <%= str.address%>
                             </span>
-                            <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Country:</strong>
+                        <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Country:</strong>
                                 <%= str.country%>
                             </span>
-                            <span class="w-80 bg-white rounded py-2 px-2"><strong>Zip coder:</strong>
+                        <span class="w-80 bg-white rounded py-2 px-2"><strong>Zip coder:</strong>
                                 <%= str.zipcode%>
                             </span>
-                            <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Description:</strong>
+                        <span class="w-80 bg-yellow-500 rounded py-2 px-2"><strong>Description:</strong>
                                 <%= str.description%>
                             </span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="store-item-list flex justify-center">
+                    <div class="store-items w-2/3 overflow-auto border-2 bg-gray-100 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mr-5 p-5">
+                        <% if(menu){ %>
+                            <% menu.forEach( (item)=> { %>
+                                <div class="border-2 bg-white w-11/12 h-96 px-2 py-2 flex flex-col justify-center ml-3 mb-3">
+
+                                    <% if(item.image[0]) { %>
+                                        <img class="item-img rounded mx-auto" src="../../uploadedImages/<%= item.image[0].img %>" width="100" height="100" alt="Store Image">
+                                        <% } else { %>
+                                            <span align="center" class="inline-block pb-40 mx-2 font-bold bg-yellow-300 text-xl">No Image Found</span>
+                                            <% } %>
+
+                                                <a class="mx-auto mt-5" href="#">
+                                                    <span class="font-bold text-lg">
+                                                <%= item.name %>
+                                            </span>
+                                                </a>
+                                                <span></span>
+                                                <div class="store-dtil w-44 mx-auto">
+                                                    <ul class="list-disc bg-gray-100 list-inside border rounded bg-white pl-4 py-2">
+                                                        <li>
+                                                            <span>
+                                                        ₹<%= item.price %>
+                                                    </span>
+                                                        </li>
+                                                        <li>
+                                                            <span>
+                                                        <%= item.size %>
+                                                    </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <a href="/seller/item/<%= item._id %>">
+                                                    <button type="submit" class="changedprice-btn w-36 h-10 mt-2 mx-16 rounded text-white font px-1 rounded focus:outline-none">
+                                                        Customize
+                                                    </button>
+                                                </a>
+                                </div>
+                                <% }) %>
+                                    <% } %>
                     </div>
 
-                    <div class="store-item-list flex justify-center">
-                        <div class="store-items w-2/3 overflow-auto border-2 bg-gray-100 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mr-5 p-5">
-                            <% if(menu){ %>
-                                <% menu.forEach( (item)=> { %>
-                                    <div class="border-2 bg-white w-11/12 px-2 py-2 flex flex-col justify-center ml-3 mb-3">
-                                        <img class="item-img rounded mx-auto" src="../../uploadedImages/<%= item.image[0].img %>" width="100" height="100" alt="Store Image">
-                                        <a class="mx-auto" href="#"><span><%= item.name %></span></a>
-                                        <span>₹<%= item.price %></span>
-                                        <hr>
-                                        <div class="container w-56 mx-auto">
-                                            <form action="#">
-                                                <span>Change Stock Status</span>:</span>
-                                                <select name="stock" id="stock" class="bg-gray-100 w-full py-1 px-3 border rounded px-2 focus:outline-none mt-2">
-                                            <option class="bg-black text-white" value="in">In Stock</option>
-                                            <option class="bg-black text-white" value="out">Out of Stock</option>
-                                        </select>
-                                            </form>
-                                            <br>
-                                            <form action="#">
-                                                <span>Change Price:</span>
-                                                <div class="flex changedprice">
-                                                    <input name="changedprice" class="bg-gray-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  mt-2" id="changedprice" type="number" placeholder="Price">
-                                                    <button class="changedprice-btn h-10 mt-2 ml-2 rounded text-white bg-yellow-500 font px-1 rounded focus:outline-none focus:shadow-outline" type="submit">
-                                                Change
-                                            </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <% }) %>
-                                        <% } %>
-                        </div>
-
-                        <div class="new-store-item">
-                            <div class="w-full max-w-xs">
-                                <form accept="/add-product" method="POST" enctype="multipart/form-data" class="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                                    <span class="font-bold py-3 px-3 bg-yellow-500 rounded">Add new Product:</span>
-                                    <br>
-                                    <br>
-                                    <span class="text-red-500 text-sm">
+                    <div class="new-store-item">
+                        <div class="w-full max-w-xs">
+                            <form accept="/add-product" method="POST" enctype="multipart/form-data" class="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                                <span class="font-bold py-3 px-3 bg-yellow-500 rounded">Add new Product:</span>
+                                <br>
+                                <br>
+                                <span class="text-red-500 text-sm">
                                     </span>
-                                    <div class="mb-4">
-                                        <label class="block text-white text-sm font-bold mb-2" for="productname">
+                                <div class="mb-4">
+                                    <label class="block text-white text-sm font-bold mb-2" for="productname">
                                             Product Name:
                                         </label>
-                                        <input name="productname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Product Name" required>
-                                    </div>
+                                    <input name="productname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Product Name" required>
+                                </div>
 
-                                    <div class="mb-4">
-                                        <label class="block text-white text-sm font-bold mb-2" for="price">
+                                <div class="mb-4">
+                                    <label class="block text-white text-sm font-bold mb-2" for="price">
                                             Product Size:
                                         </label>
-                                        <select name="size" id="stock" class="w-full py-2 px-3 border rounded px-2 focus:outline-none">
+                                    <select name="size" id="stock" class="w-full py-2 px-3 border rounded px-2 focus:outline-none">
                                             <option class="bg-black text-white" value="Small">Small</option>
                                             <option class="bg-black text-white" value="Medium">Medium</option>
                                             <option class="bg-black text-white" value="Large">Large</option>
                                         </select>
-                                    </div>
+                                </div>
 
-                                    <div class="mb-4">
-                                        <label class="block text-white text-sm font-bold mb-2" for="price">
+                                <div class="mb-4">
+                                    <label class="block text-white text-sm font-bold mb-2" for="price">
                                             Price:
                                         </label>
-                                        <input name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder="Enter your Product Price" required>
-                                    </div>
+                                    <input name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder="Enter your Product Price" required>
+                                </div>
 
-                                    <div class="mb-4">
-                                        <label class="block text-white text-sm font-bold mb-2" for="productdesc">
+                                <div class="mb-4">
+                                    <label class="block text-white text-sm font-bold mb-2" for="productdesc">
                                             Product Description:
                                         </label>
-                                        <input name="productdesc" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Product Description" required>
-                                    </div>
+                                    <input name="productdesc" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your Product Description" required>
+                                </div>
 
-                                    <div class="mb-6">
-                                        <label class="block text-white text-sm font-bold mb-2" for="productimg">
+                                <div class="mb-6">
+                                    <label class="block text-white text-sm font-bold mb-2" for="productimg">
                                             Upload Images:
                                         </label>
-                                        <input name="image" multiple max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="file" required>
-
-                                    </div>
-                                    <div class="flex items-center justify-between">
-                                        <button class="rounded-full text-white bg-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                    <input name="image" multiple max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="file" required>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <button class="rounded-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                             Add
                                         </button>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </section>
-                <% }) %>
-                    <% } %>
+                </div>
+            </section>
+            <% }) %>
+                <% } %>
 
-</body>
+                    <script>
+                        var itemIndex = 0;
+                        itemSlider();
 
-</html>
+                        function itemSlider() {
+                            var index;
+                            var x = document.getElementsByClassName("mySlides");
+                            for (index = 0; index < x.length; index++) {
+                                x[index].style.display = "none";
+                            }
+                            itemIndex++;
+                            if (itemIndex > x.length) {
+                                itemIndex = 1
+                            }
+                            x[itemIndex - 1].style.display = "block";
+                            setTimeout(itemSlider, 2000); // Change image every 2 seconds
+                        }
+                    </script>

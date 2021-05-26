@@ -44,10 +44,20 @@ function initRoutes(app) {
 
     //Seller routes
     app.get('/seller/sellerStr', seller, sellerStoreController().index)
-    app.get('/add-store', sellerStoreController().show)
     app.post('/add-store', sellerStoreController().addStore)
-    app.get('/seller/store/:si', prodController().showStore)
-    app.post('/seller/store/:si', prodController().addProduct)
+    app.get('/add-store', sellerStoreController().show)
+    app.get('/seller/store/:si', sellerStoreController().showStore)
+    app.post('/seller/store/:si', sellerStoreController().addProduct)
+    app.get('/seller/storeCust/:si', sellerStoreController().editStore)
+    app.post('/seller/updatestore/:storeid', sellerStoreController().updateStore)
+    app.post('/store-add-img/:storeid', sellerStoreController().storeAddImg)
+    app.post('/deleteImg/:imgid', sellerStoreController().deleteImage)
+
+
+    app.get('/seller/item/:ii', prodController().showItem)
+    app.post('/deleteImg/:imgid', prodController().deleteImage)
+    app.post('/item-add-img/:itemid', prodController().itemAddImg)
+    app.post('/seller/updateitem/:itemid', prodController().updateItem)
 
     //Admin routes
     app.get('/admin/orders', admin, adminOrderController().index)
