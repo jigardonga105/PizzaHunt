@@ -3,16 +3,18 @@ import Noty from 'noty'
 
 
 let deleteBtn = document.querySelectorAll(".delete-img-btn");
+let deleteStrBtn = document.querySelectorAll(".delete-strimg-btn");
 
 export function handleStore() {
-    deleteImg();
+    deleteItemImg();
+    deleteStrImg();
 
     function reload() {
         reload = location.reload();
     }
 
-    function deleteConfirm(imgId) {
-        axios.post(`/deleteImg/${imgId}`)
+    function deleteConfirmStore(imgId) {
+        axios.post(`/deleteImgStore/${imgId}`)
             .then(res => {
                     new Noty({
                         type: 'success',
@@ -32,7 +34,28 @@ export function handleStore() {
             })
     }
 
-    async function deleteImg() {
+    function deleteConfirmItem(imgId) {
+        axios.post(`/deleteImgItem/${imgId}`)
+            .then(res => {
+                    new Noty({
+                        type: 'success',
+                        timeout: 1000,
+                        text: 'Image Deleted',
+                        progressBar: false,
+                    }).show();
+                },
+                reload())
+            .catch(err => {
+                new Noty({
+                    type: 'error',
+                    timeout: 1000,
+                    text: 'Something went wrong',
+                    progressBar: false,
+                }).show();
+            })
+    }
+
+    async function deleteItemImg() {
         //This is for Delete item image
         if (deleteBtn) {
 
@@ -53,7 +76,42 @@ export function handleStore() {
                                     let confirm = window.confirm('Are you sure you want to delete this image?')
                                     if (confirm) {
                                         console.log('ok');
-                                        deleteConfirm(item[j].image[k]._id);
+                                        deleteConfirmItem(item[j].image[k]._id);
+                                    } else {
+                                        console.log('no');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    async function deleteStrImg() {
+        //This is for Delete item image
+        if (deleteStrBtn) {
+
+            for (let i = 0; i < deleteStrBtn.length; i++) {
+
+
+                deleteStrBtn[i].addEventListener('click', (e) => {
+                    console.log('clicked');
+
+                    let item = JSON.parse(deleteStrBtn[i].dataset.item)
+                    if (item) {
+
+                        for (let j = 0; j < item.length; j++) {
+
+                            for (let k = 0; k < item[j].image.length; k++) {
+
+                                if (item[j].image[k]._id === deleteStrBtn[i].value) {
+
+                                    let confirm = window.confirm('Are you sure you want to delete this image?')
+                                    if (confirm) {
+                                        console.log('ok');
+                                        deleteConfirmStore(item[j].image[k]._id);
                                     } else {
                                         console.log('no');
                                     }

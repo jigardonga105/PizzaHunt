@@ -15,8 +15,15 @@
                 <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Product Size:</strong>
                     <%= item.size %>
                 </span>
-                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Product Price:</strong> ₹<%= item.price %>
-                        </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg"><strong>Product Price:</strong>
+                    ₹<%= item.price %>
+                </span>
+                <span class="bg-gray-300 rounded mb-5 p-2 text-lg flex">
+                    <span><strong>Product Rating:</strong>
+                        <%= item.rating %>&nbsp;
+                    </span>
+                <span><img class="mt-1" src="/img/star.png" alt="" height="20" width="20"></span>
+                </span>
             </div>
 
             <div class="item-updating border-2 rounded item-data-change px-10 py-10 bg-gray-800 shadow-xl">

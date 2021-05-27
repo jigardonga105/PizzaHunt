@@ -45,6 +45,59 @@ if (alertMsg) {
     }, 2000)
 }
 
+//==============================Rating Update======================================
+
+const rate_span = document.querySelector('.rate-span');
+const rate_now = document.querySelector('.rate-now');
+const rate = document.querySelector('#rate');
+const rate_form = document.querySelector('#rate-form');
+
+function showHideStar() {
+    if (rate_now.style.display === 'block') {
+        rate_now.style.display = 'none';
+    } else {
+        rate_now.style.display = 'block';
+    }
+}
+
+rate_span.addEventListener('click', () => {
+    showHideStar()
+})
+
+const ratingStars = [...document.getElementsByClassName("star")];
+const ratingResult = document.querySelector(".result");
+
+printRatingResult(ratingResult);
+
+function executeRating(stars, result) {
+    const starClassActive = "rating__star fas fa-star";
+    const starClassUnactive = "rating__star far fa-star";
+    const starsLength = stars.length;
+    let i;
+    stars.map((star) => {
+        star.onclick = () => {
+            i = stars.indexOf(star);
+            rate.setAttribute('value', `${i + 1}`)
+            rate_form.submit();
+
+            if (star.className.indexOf(starClassUnactive) !== -1) {
+                printRatingResult(result, i + 1);
+                for (i; i >= 0; --i) stars[i].className = starClassActive;
+            } else {
+                printRatingResult(result, i);
+                for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+            }
+        };
+    });
+}
+
+function printRatingResult(result, num = 0) {
+    result.textContent = `${num}/5`;
+}
+
+executeRating(ratingStars, ratingResult);
+//==============================Rating Update======================================
+
 
 //Change order status
 let statuses = document.querySelectorAll('.status_line')

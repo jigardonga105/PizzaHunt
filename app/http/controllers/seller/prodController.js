@@ -14,7 +14,7 @@ function prodController() {
             }
         },
 
-        async deleteImage(req, res) {
+        async deleteItemImage(req, res) {
             let imageSet = await Menu.find().select({ image: 1, _id: 0 })
 
             if (imageSet) {
@@ -35,8 +35,10 @@ function prodController() {
                                         if (err) {
                                             console.log(err);
                                         }
+                                        if (res) {
+                                            console.log(res);
+                                        }
                                     })
-                                    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
                                 }
                             }
 
@@ -66,7 +68,6 @@ function prodController() {
             const result = await Menu.updateOne({ _id: req.params.itemid }, { $push: { image: { $each: productPictures } } })
                 // console.log(result);
             if (result) {
-                res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
                 res.redirect(`/seller/item/${req.params.itemid}`)
             } else {
                 res.render('/')
@@ -77,7 +78,6 @@ function prodController() {
             if (req.body.changedname) {
                 const name = await Menu.updateOne({ _id: req.params.itemid }, { $set: { name: req.body.changedname } })
                 if (name) {
-                    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
                     res.redirect(`/seller/item/${req.params.itemid}`)
                 } else {
                     res.render('/')
@@ -87,7 +87,6 @@ function prodController() {
             if (req.body.changedprice) {
                 const price = await Menu.updateOne({ _id: req.params.itemid }, { $set: { price: req.body.changedprice } })
                 if (price) {
-                    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
                     res.redirect(`/seller/item/${req.params.itemid}`)
                 } else {
                     res.render('/')
@@ -103,7 +102,6 @@ function prodController() {
                 }
                 const stock = await Menu.updateOne({ _id: req.params.itemid }, { $set: { stock: stockState } })
                 if (stock) {
-                    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
                     res.redirect(`/seller/item/${req.params.itemid}`)
                 } else {
                     res.render('/')
@@ -113,7 +111,6 @@ function prodController() {
             if (req.body.size) {
                 const size = await Menu.updateOne({ _id: req.params.itemid }, { $set: { size: req.body.size } })
                 if (size) {
-                    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
                     res.redirect(`/seller/item/${req.params.itemid}`)
                 } else {
                     res.render('/')

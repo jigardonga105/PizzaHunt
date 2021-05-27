@@ -195,7 +195,7 @@ function storeController() {
             }
         },
 
-        async deleteImage(req, res) {
+        async deleteStrImage(req, res) {
             let imageSet = await Store.find().select({ image: 1, _id: 0 })
 
             if (imageSet) {

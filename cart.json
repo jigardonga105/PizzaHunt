@@ -1,12 +1,12 @@
 {
     "cookie": {
         "originalMaxAge": 86400000,
-        "expires": "2021-05-22T17:43:50.070Z",
+        "expires": "2021-05-27T18:05:01.695Z",
         "httpOnly": true,
         "path": "/"
     },
     "flash": {},
-    "passport": { "user": "60a6a1d1e7d0646b348bd0fe" },
+    "passport": { "user": "60a63ef4aa1e538c78669d28" },
     "cart": {
         "custID_60a63ef4aa1e538c78669d28_cart": {
             "items": {
@@ -54,5 +54,85 @@
             "totalQty": 4,
             "totalPrice": 1250
         }
+    },
+    "rate": {
+        "custID_60a63ef4aa1e538c78669d28_rate": {
+            "products": {
+                "60ae98fab8c0cb4298034371": {
+                    "item": {
+                        "stock": true,
+                        "vote": 1,
+                        "rating": 3,
+                        "_id": "60ae98fab8c0cb4298034371",
+                        "storeId": "60ae269341837d2550e0d5e4",
+                        "name": "Pizza",
+                        "size": "Large",
+                        "price": 120,
+                        "desc": "testy",
+                        "image": [{
+                            "_id": "60ae98fab8c0cb4298034372",
+                            "img": "image_1622055162851.jpg"
+                        }],
+                        "__v": 0
+                    },
+                    "rate": "5"
+                }
+            }
+        },
+        "custID_60ae9b586f4acb45a86f2a8d_rate": {
+            "products": {
+                "60ae98fab8c0cb4298034371": {
+                    "item": {
+                        "stock": true,
+                        "vote": 2,
+                        "rating": 4,
+                        "_id": "60ae98fab8c0cb4298034371",
+                        "storeId": "60ae269341837d2550e0d5e4",
+                        "name": "Pizza",
+                        "size": "Large",
+                        "price": 120,
+                        "desc": "testy",
+                        "image": [{
+                            "_id": "60ae98fab8c0cb4298034372",
+                            "img": "image_1622055162851.jpg"
+                        }],
+                        "__v": 0
+                    },
+                    "rate": "1"
+                }
+            }
+        },
+        "custID_60aea58c6fa8010e9c09e769_rate": {
+            "products": {
+                "60ae98fab8c0cb4298034371": {
+                    "item": {
+                        "stock": true,
+                        "vote": 2,
+                        "rating": 3,
+                        "_id": "60ae98fab8c0cb4298034371",
+                        "storeId": "60ae269341837d2550e0d5e4",
+                        "name": "Pizza",
+                        "size": "Large",
+                        "price": 120,
+                        "desc": "testy",
+                        "image": [{
+                            "_id": "60ae98fab8c0cb4298034372",
+                            "img": "image_1622055162851.jpg"
+                        }],
+                        "__v": 0
+                    },
+                    "rate": "5"
+                }
+            }
+        }
+    },
+    "ProductsRate": {
+        "60ae98fab8c0cb4298034371": {
+            "_id": "60ae98fab8c0cb4298034371",
+            "rating": 11
+        }
+    },
+    "vote": {
+        "60ae98fab8c0cb4298034371": { "_id": "60ae98fab8c0cb4298034371", "vote": 3 }
     }
 }

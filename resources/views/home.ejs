@@ -26,13 +26,66 @@
                                 <span class="size py-1 px-4 rounded-full uppercase text-xs"><%= pizza.size %></span>
                                 <div class="flex items-center justify-around mt-6">
                                     <span class="font-bold text-lg">₹<%= pizza.price %></span>
-                                    <button data-pizza="<%= JSON.stringify(pizza) %>" class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span class="text-white">+</span>
-                        <span class="ml-4 text-white">Add</span>
-                    </button>
+                                    <% if(user) {%>
+                                        <% if(user.role == 'customer') {%>
+                                            <button data-pizza="<%= JSON.stringify(pizza) %>" class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
+                                                <span class="text-white">+</span>
+                                                <span class="ml-4 text-white">Add</span>
+                                            </button>
+                                            <% } %>
+                                                <% } %>
+
                                 </div>
+                                <div class="rating mx-auto mt-5">
+                                    <input type="hidden" name="rating" id="rating" value="<%= pizza.rating %>">
+                                    <span class="rating__result"></span>
+                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                </div>
+                                <% if(user) {%>
+                                    <% if(user.role == 'customer') {%>
+                                        <div>
+                                            <span class="rate-span cursor-pointer">Rate this Product</span>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <div class="rate-now rating mx-auto mt-5" style="display: none;">
+                                                    <form id="rate-form" action="/update-rating" method="POST">
+                                                        <input type="hidden" name="pdID" id="pdID" value="<%= pizza._id %>">
+                                                        <input type="hidden" name="rate" id="rate">
+                                                    </form>
+                                                    <span class="rating__result result"></span>
+                                                    <i class="rating__star star far fa-star"></i>
+                                                    <i class="rating__star star far fa-star"></i>
+                                                    <i class="rating__star star far fa-star"></i>
+                                                    <i class="rating__star star far fa-star"></i>
+                                                    <i class="rating__star star far fa-star"></i>
+                                                </div>
                             </div>
             </div>
             <% }) %>
     </div>
 </section>
+
+<script>
+    const ratingStars = [...document.getElementsByClassName("disabled_star")];
+    const ratingResult = document.querySelector(".rating__result");
+    const rating = document.querySelector("#rating").value;
+
+    let rateStar = Math.round(rating);
+
+
+    function executeRating(stars, result) {
+
+        for (let i = 0; i < rateStar; i++) {
+            console.log(stars[i]);
+            stars[i].classList.remove("far")
+            stars[i].classList.add("fas")
+        }
+    }
+
+    executeRating(ratingStars, ratingResult);
+</script>

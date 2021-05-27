@@ -2231,6 +2231,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -2273,8 +2285,66 @@ if (alertMsg) {
   setTimeout(function () {
     alertMsg.remove();
   }, 2000);
-} //Change order status
+} //==============================Rating Update======================================
 
+
+var rate_span = document.querySelector('.rate-span');
+var rate_now = document.querySelector('.rate-now');
+var rate = document.querySelector('#rate');
+var rate_form = document.querySelector('#rate-form');
+
+function showHideStar() {
+  if (rate_now.style.display === 'block') {
+    rate_now.style.display = 'none';
+  } else {
+    rate_now.style.display = 'block';
+  }
+}
+
+rate_span.addEventListener('click', function () {
+  showHideStar();
+});
+
+var ratingStars = _toConsumableArray(document.getElementsByClassName("star"));
+
+var ratingResult = document.querySelector(".result");
+printRatingResult(ratingResult);
+
+function executeRating(stars, result) {
+  var starClassActive = "rating__star fas fa-star";
+  var starClassUnactive = "rating__star far fa-star";
+  var starsLength = stars.length;
+  var i;
+  stars.map(function (star) {
+    star.onclick = function () {
+      i = stars.indexOf(star);
+      rate.setAttribute('value', "".concat(i + 1));
+      rate_form.submit();
+
+      if (star.className.indexOf(starClassUnactive) !== -1) {
+        printRatingResult(result, i + 1);
+
+        for (i; i >= 0; --i) {
+          stars[i].className = starClassActive;
+        }
+      } else {
+        printRatingResult(result, i);
+
+        for (i; i < starsLength; ++i) {
+          stars[i].className = starClassUnactive;
+        }
+      }
+    };
+  });
+}
+
+function printRatingResult(result) {
+  var num = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  result.textContent = "".concat(num, "/5");
+}
+
+executeRating(ratingStars, ratingResult); //==============================Rating Update======================================
+//Change order status
 
 var statuses = document.querySelectorAll('.status_line');
 var hiddenInput = document.querySelector('#hiddenInput');
@@ -2367,15 +2437,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var deleteBtn = document.querySelectorAll(".delete-img-btn");
+var deleteStrBtn = document.querySelectorAll(".delete-strimg-btn");
 function handleStore() {
-  deleteImg();
+  deleteItemImg();
+  deleteStrImg();
 
   function reload() {
     reload = location.reload();
   }
 
-  function deleteConfirm(imgId) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/deleteImg/".concat(imgId)).then(function (res) {
+  function deleteConfirmStore(imgId) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/deleteImgStore/".concat(imgId)).then(function (res) {
       new (noty__WEBPACK_IMPORTED_MODULE_2___default())({
         type: 'success',
         timeout: 1000,
@@ -2392,12 +2464,30 @@ function handleStore() {
     });
   }
 
-  function deleteImg() {
-    return _deleteImg.apply(this, arguments);
+  function deleteConfirmItem(imgId) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/deleteImgItem/".concat(imgId)).then(function (res) {
+      new (noty__WEBPACK_IMPORTED_MODULE_2___default())({
+        type: 'success',
+        timeout: 1000,
+        text: 'Image Deleted',
+        progressBar: false
+      }).show();
+    }, reload())["catch"](function (err) {
+      new (noty__WEBPACK_IMPORTED_MODULE_2___default())({
+        type: 'error',
+        timeout: 1000,
+        text: 'Something went wrong',
+        progressBar: false
+      }).show();
+    });
   }
 
-  function _deleteImg() {
-    _deleteImg = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+  function deleteItemImg() {
+    return _deleteItemImg.apply(this, arguments);
+  }
+
+  function _deleteItemImg() {
+    _deleteItemImg = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var _loop, i;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2418,7 +2508,7 @@ function handleStore() {
 
                             if (confirm) {
                               console.log('ok');
-                              deleteConfirm(item[j].image[k]._id);
+                              deleteConfirmItem(item[j].image[k]._id);
                             } else {
                               console.log('no');
                             }
@@ -2441,7 +2531,60 @@ function handleStore() {
         }
       }, _callee);
     }));
-    return _deleteImg.apply(this, arguments);
+    return _deleteItemImg.apply(this, arguments);
+  }
+
+  function deleteStrImg() {
+    return _deleteStrImg.apply(this, arguments);
+  }
+
+  function _deleteStrImg() {
+    _deleteStrImg = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var _loop2, i;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              //This is for Delete item image
+              if (deleteStrBtn) {
+                _loop2 = function _loop2(i) {
+                  deleteStrBtn[i].addEventListener('click', function (e) {
+                    console.log('clicked');
+                    var item = JSON.parse(deleteStrBtn[i].dataset.item);
+
+                    if (item) {
+                      for (var j = 0; j < item.length; j++) {
+                        for (var k = 0; k < item[j].image.length; k++) {
+                          if (item[j].image[k]._id === deleteStrBtn[i].value) {
+                            var confirm = window.confirm('Are you sure you want to delete this image?');
+
+                            if (confirm) {
+                              console.log('ok');
+                              deleteConfirmStore(item[j].image[k]._id);
+                            } else {
+                              console.log('no');
+                            }
+                          }
+                        }
+                      }
+                    }
+                  });
+                };
+
+                for (i = 0; i < deleteStrBtn.length; i++) {
+                  _loop2(i);
+                }
+              }
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return _deleteStrImg.apply(this, arguments);
   }
 }
 

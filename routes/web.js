@@ -6,6 +6,7 @@ const adminOrderController = require('../app/http/controllers/admin/orderControl
 const statusController = require('../app/http/controllers/admin/statusController')
 const sellerStoreController = require('../app/http/controllers/seller/storeController')
 const prodController = require('../app/http/controllers/seller/prodController')
+const rateController = require('../app/http/controllers/customers/rateController')
 
 
 //Middlewares
@@ -13,6 +14,7 @@ const guest = require('../app/http/middlewares/guest');
 const auth = require('../app/http/middlewares/auth');
 const admin = require('../app/http/middlewares/admin');
 const seller = require('../app/http/middlewares/seller');
+const customer = require('../app/http/middlewares/customer');
 
 function initRoutes(app) {
     app.get('/', homeController().index)
@@ -51,11 +53,11 @@ function initRoutes(app) {
     app.get('/seller/storeCust/:si', sellerStoreController().editStore)
     app.post('/seller/updatestore/:storeid', sellerStoreController().updateStore)
     app.post('/store-add-img/:storeid', sellerStoreController().storeAddImg)
-    app.post('/deleteImg/:imgid', sellerStoreController().deleteImage)
+    app.post('/deleteImgStore/:imgid', sellerStoreController().deleteStrImage)
 
 
     app.get('/seller/item/:ii', prodController().showItem)
-    app.post('/deleteImg/:imgid', prodController().deleteImage)
+    app.post('/deleteImgItem/:imgid', prodController().deleteItemImage)
     app.post('/item-add-img/:itemid', prodController().itemAddImg)
     app.post('/seller/updateitem/:itemid', prodController().updateItem)
 
@@ -67,6 +69,7 @@ function initRoutes(app) {
     app.post('/orders', auth, orderController().store)
     app.get('/customer/orders', auth, orderController().index)
     app.get('/customer/orders/:id', auth, orderController().show)
+    app.post('/update-rating', customer, rateController().index)
 
 }
 

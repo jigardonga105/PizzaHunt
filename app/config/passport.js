@@ -12,6 +12,7 @@ function init(passport) {
             return done(null, false, { message: 'No user with this email' });
         }
 
+
         bcrypt.compare(password, user.password)
             .then(match => {
                 if (match) {

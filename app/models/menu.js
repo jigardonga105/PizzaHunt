@@ -13,7 +13,8 @@ const menuSchema = new Schema({
     price: { type: Number, required: true },
     desc: { type: String, required: true },
     image: [{ img: { type: String } }],
-    vote: { type: Number, required: true, default: 0 }
+    vote: { type: Number, required: true, default: 0 },
+    rating: { type: Number, required: true, default: 0 }
 })
 
 module.exports = mongoose.model('Menu', menuSchema)

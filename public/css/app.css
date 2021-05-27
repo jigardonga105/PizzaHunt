@@ -774,3 +774,121 @@ section.status {
     margin: 0 auto;
   }
 }
+@media only screen and (min-width: 1060px) {
+  .add-store {
+    height: 44rem;
+  }
+
+  .add-store-adder-header {
+    margin-left: 35%;
+  }
+
+  .add-store-adder-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .add-store-adder-form-btn {
+    margin-left: 88%;
+  }
+}
+@media only screen and (max-width: 1060px) {
+  .add-store {
+    flex-direction: column;
+    height: auto;
+    padding-top: 20px;
+  }
+
+  .add-store-null {
+    margin-left: 40%;
+  }
+
+  .add-store-adder {
+    margin-left: 16%;
+    height: 118%;
+  }
+
+  .add-store-adder-header {
+    margin: auto;
+    margin: 10px auto;
+  }
+
+  .add-store-adder-form {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .add-store-adder-form-btn {
+    margin-left: 42%;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 699px) {
+  .add-store-null {
+    margin-left: 20%;
+  }
+}
+@media only screen and (max-width: 535px) {
+  .add-store-adder-header {
+    width: 12rem;
+  }
+
+  .add-store-adder-header-span {
+    margin: auto 0;
+  }
+
+  .add-store-adder-form-div {
+    width: 12rem;
+  }
+
+  #country {
+    width: 12rem;
+  }
+
+  .add-store-adder-form-btn {
+    margin-left: 26%;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 391px) {
+  .add-store-null {
+    width: 180px;
+  }
+}
+.rate-span:hover {
+  text-decoration: underline;
+}
+
+.rating {
+  position: relative;
+  width: 180px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 2px #b3acac;
+}
+
+.rating__result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-10px) translateX(-5px);
+  z-index: -9;
+  font: 3em Arial, Helvetica, sans-serif;
+  color: #ebebeb8e;
+  pointer-events: none;
+}
+
+.rating__star {
+  font-size: 1.3em;
+  cursor: pointer;
+  color: #dabd18b2;
+  transition: filter linear 0.3s;
+}
+
+.rating__star:hover {
+  filter: drop-shadow(1px 1px 4px gold);
+}

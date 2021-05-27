@@ -134,7 +134,7 @@
                     <% for (const img of item.image) { %>
                         <div>
                             <img class="rounded" src="../../../uploadedImages/<%= img.img %>" alt="item image" style="height: 13rem;">
-                            <button value="<%= img._id %>" data-item="<%= JSON.stringify(imageSet) %>" class="delete-img-btn changedprice-btn h-10 ml-24 mt-5 rounded text-black bg-yellow-500 font px-5 rounded focus:outline-none mx-auto" type="submit">
+                            <button value="<%= img._id %>" data-item="<%= JSON.stringify(imageSet) %>" class="delete-strimg-btn changedprice-btn h-10 ml-24 mt-5 rounded text-black bg-yellow-500 font px-5 rounded focus:outline-none mx-auto" type="submit">
                                 Delete
                             </button>
                         </div>
@@ -173,29 +173,3 @@
                         setTimeout(itemSlider, 2000); // Change image every 2 seconds
                     }
                 </script>
-
-                <!-- <script>
-                    let itemdata = document.querySelector('#itemdata');
-                    // console.log(JSON.parse(itemdata.value));
-                    let item = JSON.parse(itemdata.value);
-                    let sizeOption1 = document.querySelector('#Small');
-                    let sizeOption2 = document.querySelector('#Medium');
-                    let sizeOption3 = document.querySelector('#Large');
-
-                    if (item.size === 'Small') {
-                        sizeOption1.setAttribute("selected", '');
-                    } else if (item.size === 'Medium') {
-                        sizeOption2.setAttribute("selected", '');
-                    } else {
-                        sizeOption3.setAttribute("selected", '');
-                    }
-
-                    let stockOption1 = document.querySelector('#in')
-                    let stockOption2 = document.querySelector('#out')
-
-                    if (item.stock === true) {
-                        stockOption1.setAttribute("selected", '');
-                    } else if (item.stock === false) {
-                        stockOption2.setAttribute("selected", '');
-                    }
-                </script> -->
