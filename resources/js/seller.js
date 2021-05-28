@@ -2,7 +2,7 @@ import axios from 'axios'
 import Noty from 'noty'
 
 
-let deleteBtn = document.querySelectorAll(".delete-img-btn");
+let deleteItemBtn = document.querySelectorAll(".delete-img-btn");
 let deleteStrBtn = document.querySelectorAll(".delete-strimg-btn");
 
 export function handleStore() {
@@ -57,21 +57,22 @@ export function handleStore() {
 
     async function deleteItemImg() {
         //This is for Delete item image
-        if (deleteBtn) {
+        if (deleteItemBtn) {
 
-            for (let i = 0; i < deleteBtn.length; i++) {
+            for (let i = 0; i < deleteItemBtn.length; i++) {
 
 
-                deleteBtn[i].addEventListener('click', (e) => {
+                deleteItemBtn[i].addEventListener('click', (e) => {
+                    console.log(deleteItemBtn[i]);
 
-                    let item = JSON.parse(deleteBtn[i].dataset.item)
+                    let item = JSON.parse(deleteItemBtn[i].dataset.item)
                     if (item) {
 
                         for (let j = 0; j < item.length; j++) {
 
                             for (let k = 0; k < item[j].image.length; k++) {
 
-                                if (item[j].image[k]._id === deleteBtn[i].value) {
+                                if (item[j].image[k]._id === deleteItemBtn[i].value) {
 
                                     let confirm = window.confirm('Are you sure you want to delete this image?')
                                     if (confirm) {

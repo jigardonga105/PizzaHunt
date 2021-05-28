@@ -37,55 +37,39 @@
 
                                 </div>
                                 <div class="rating mx-auto mt-5">
-                                    <input type="hidden" name="rating" id="rating" value="<%= pizza.rating %>">
+                                    <input type="hidden" name="<%= pizza.rating %>" id="showI-input" value="pd_<%= pizza._id %>">
                                     <span class="rating__result"></span>
-                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
-                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
-                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
-                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
-                                    <i class="disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                    <div id="show-i">
+                                        <i class="pd_<%= pizza._id %> disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                        <i class="pd_<%= pizza._id %> disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                        <i class="pd_<%= pizza._id %> disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                        <i class="pd_<%= pizza._id %> disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                        <i class="pd_<%= pizza._id %> disabled_star rating__star far fa-star" style="cursor: default;"></i>
+                                    </div>
                                 </div>
                                 <% if(user) {%>
                                     <% if(user.role == 'customer') {%>
-                                        <div>
+                                        <div class="mb-5">
                                             <span class="rate-span cursor-pointer">Rate this Product</span>
                                         </div>
                                         <% } %>
                                             <% } %>
-                                                <div class="rate-now rating mx-auto mt-5" style="display: none;">
+                                                <div class="rate-now rating mx-auto mt-5 mb-7" style="display: none;">
                                                     <form id="rate-form" action="/update-rating" method="POST">
                                                         <input type="hidden" name="pdID" id="pdID" value="<%= pizza._id %>">
                                                         <input type="hidden" name="rate" id="rate">
                                                     </form>
                                                     <span class="rating__result result"></span>
-                                                    <i class="rating__star star far fa-star"></i>
-                                                    <i class="rating__star star far fa-star"></i>
-                                                    <i class="rating__star star far fa-star"></i>
-                                                    <i class="rating__star star far fa-star"></i>
-                                                    <i class="rating__star star far fa-star"></i>
+                                                    <div id="form-i">
+                                                        <i class="rating__star star far fa-star"></i>
+                                                        <i class="rating__star star far fa-star"></i>
+                                                        <i class="rating__star star far fa-star"></i>
+                                                        <i class="rating__star star far fa-star"></i>
+                                                        <i class="rating__star star far fa-star"></i>
+                                                    </div>
                                                 </div>
                             </div>
             </div>
             <% }) %>
     </div>
 </section>
-
-<script>
-    const ratingStars = [...document.getElementsByClassName("disabled_star")];
-    const ratingResult = document.querySelector(".rating__result");
-    const rating = document.querySelector("#rating").value;
-
-    let rateStar = Math.round(rating);
-
-
-    function executeRating(stars, result) {
-
-        for (let i = 0; i < rateStar; i++) {
-            console.log(stars[i]);
-            stars[i].classList.remove("far")
-            stars[i].classList.add("fas")
-        }
-    }
-
-    executeRating(ratingStars, ratingResult);
-</script>

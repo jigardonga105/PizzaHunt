@@ -5,7 +5,7 @@ const app = express()
 const ejs = require('ejs')
 const path = require('path')
 const expressLayout = require('express-ejs-layouts')
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 3000
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
@@ -41,7 +41,7 @@ app.use(session({
         mongoUrl: process.env.MONGO_CONNECTION_URL
     }),
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour 
+    // cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour 
 }))
 
 //Passport config
@@ -74,7 +74,7 @@ var storage = multer.diskStorage({
         callback(null, filename);
     }
 });
-app.use(multer({ storage: storage }).any("image", 5));
+app.use(multer({ storage: storage }).any("image"));
 
 // Global middleware 
 app.use((req, res, next) => {

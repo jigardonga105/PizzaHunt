@@ -58,67 +58,82 @@
     "rate": {
         "custID_60a63ef4aa1e538c78669d28_rate": {
             "products": {
-                "60ae98fab8c0cb4298034371": {
+                "60af78da7a371226b84a60ad": {
                     "item": {
-                        "stock": true,
+                        "stock": false,
                         "vote": 1,
                         "rating": 3,
-                        "_id": "60ae98fab8c0cb4298034371",
-                        "storeId": "60ae269341837d2550e0d5e4",
-                        "name": "Pizza",
+                        "_id": "60af78da7a371226b84a60ad",
+                        "storeId": "60af78457a371226b84a60a2",
+                        "name": "Burger",
                         "size": "Large",
-                        "price": 120,
-                        "desc": "testy",
+                        "price": 100,
+                        "desc": "dsvbkjdbv",
                         "image": [{
-                            "_id": "60ae98fab8c0cb4298034372",
-                            "img": "image_1622055162851.jpg"
-                        }],
-                        "__v": 0
-                    },
-                    "rate": "5"
-                }
-            }
-        },
-        "custID_60ae9b586f4acb45a86f2a8d_rate": {
-            "products": {
-                "60ae98fab8c0cb4298034371": {
-                    "item": {
-                        "stock": true,
-                        "vote": 2,
-                        "rating": 4,
-                        "_id": "60ae98fab8c0cb4298034371",
-                        "storeId": "60ae269341837d2550e0d5e4",
-                        "name": "Pizza",
-                        "size": "Large",
-                        "price": 120,
-                        "desc": "testy",
-                        "image": [{
-                            "_id": "60ae98fab8c0cb4298034372",
-                            "img": "image_1622055162851.jpg"
-                        }],
+                                "_id": "60af78da7a371226b84a60ae",
+                                "img": "image_1622112473909.png"
+                            },
+                            {
+                                "_id": "60af78da7a371226b84a60af",
+                                "img": "image_1622112474107.png"
+                            }
+                        ],
                         "__v": 0
                     },
                     "rate": "1"
+                },
+                "60af4ee690e7e90c44e966dd": {
+                    "item": {
+                        "stock": true,
+                        "vote": 1,
+                        "rating": 1,
+                        "_id": "60af4ee690e7e90c44e966dd",
+                        "storeId": "60af4e9b90e7e90c44e966d9",
+                        "name": "Pizza",
+                        "size": "Medium",
+                        "price": 120,
+                        "desc": "testy with salad",
+                        "image": [{
+                                "_id": "60af4ee690e7e90c44e966de",
+                                "img": "image_1622101734293.png"
+                            },
+                            {
+                                "_id": "60af4ee690e7e90c44e966df",
+                                "img": "image_1622101734493.jpg"
+                            },
+                            {
+                                "_id": "60af4ee690e7e90c44e966e0",
+                                "img": "image_1622101734505.png"
+                            }
+                        ],
+                        "__v": 0
+                    },
+                    "rate": "4"
                 }
             }
         },
-        "custID_60aea58c6fa8010e9c09e769_rate": {
+        "custID_60b0012c802fb62e90fa66ab_rate": {
             "products": {
-                "60ae98fab8c0cb4298034371": {
+                "60af78da7a371226b84a60ad": {
                     "item": {
-                        "stock": true,
-                        "vote": 2,
-                        "rating": 3,
-                        "_id": "60ae98fab8c0cb4298034371",
-                        "storeId": "60ae269341837d2550e0d5e4",
-                        "name": "Pizza",
+                        "stock": false,
+                        "vote": 1,
+                        "rating": 1,
+                        "_id": "60af78da7a371226b84a60ad",
+                        "storeId": "60af78457a371226b84a60a2",
+                        "name": "Burger",
                         "size": "Large",
-                        "price": 120,
-                        "desc": "testy",
+                        "price": 100,
+                        "desc": "dsvbkjdbv",
                         "image": [{
-                            "_id": "60ae98fab8c0cb4298034372",
-                            "img": "image_1622055162851.jpg"
-                        }],
+                                "_id": "60af78da7a371226b84a60ae",
+                                "img": "image_1622112473909.png"
+                            },
+                            {
+                                "_id": "60af78da7a371226b84a60af",
+                                "img": "image_1622112474107.png"
+                            }
+                        ],
                         "__v": 0
                     },
                     "rate": "5"
@@ -126,13 +141,24 @@
             }
         }
     },
-    "ProductsRate": {
-        "60ae98fab8c0cb4298034371": {
-            "_id": "60ae98fab8c0cb4298034371",
-            "rating": 11
+    "vote": {
+        "60af78da7a371226b84a60ad": {
+            "_id": "60af78da7a371226b84a60ad",
+            "vote": 2
+        },
+        "60af4ee690e7e90c44e966dd": {
+            "_id": "60af4ee690e7e90c44e966dd",
+            "vote": 1
         }
     },
-    "vote": {
-        "60ae98fab8c0cb4298034371": { "_id": "60ae98fab8c0cb4298034371", "vote": 3 }
+    "ProductsRate": {
+        "60af78da7a371226b84a60ad": {
+            "_id": "60af78da7a371226b84a60ad",
+            "rating": 3
+        },
+        "60af4ee690e7e90c44e966dd": {
+            "_id": "60af4ee690e7e90c44e966dd",
+            "rating": 1
+        }
     }
 }

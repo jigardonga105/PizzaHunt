@@ -8,7 +8,7 @@ function authController() {
     }
 
     //Function for save Seller Registration data into the Database
-    async function saveSeller(username, email, phone, password, User, req, res) {
+    async function saveSeller(username, email, password, User, req, res) {
         //Hash password
         const hashPassword = await bcrypt.hash(password, 10)
 
@@ -17,7 +17,6 @@ function authController() {
             role: 'seller',
             name: username,
             email,
-            phone,
             password: hashPassword
         })
 
@@ -104,9 +103,10 @@ function authController() {
 
             user.save()
                 .then((user) => {
-                    return res.redirect('/')
+                    return res.redirect('/login')
                 })
                 .catch((err) => {
+                    console.log(err);
                     req.flash('error', 'Something went wrong')
                     return res.redirect('/register')
                 })
@@ -119,14 +119,13 @@ function authController() {
 
         async postSellerRegister(req, res) {
             // res.render('auth/sellerReg')
-            const { username, email, phone, password } = req.body
+            const { username, email, password } = req.body
 
             //Validate request
-            if (!username || !email || !phone || !password) {
+            if (!username || !email || !password) {
                 req.flash('error', 'All fields are required')
                 req.flash('username', username)
                 req.flash('email', email)
-                req.flash('phone', phone)
                 return res.redirect('/sellerReg')
             }
 
@@ -138,24 +137,22 @@ function authController() {
                     // console.log(emailUse[0].role);
                     const role = emailUse[0].role;
                     if (role === 'customer' || role === 'admin') {
-                        saveSeller(username, email, phone, password, User, req, res)
+                        saveSeller(username, email, password, User, req, res)
 
                     } else {
                         req.flash('error', 'Email already taken')
                         req.flash('username', username)
-                        req.flash('phone', phone)
                         return res.redirect('/sellerReg')
 
                     }
                 } else {
                     req.flash('error', 'Email already taken')
                     req.flash('username', username)
-                    req.flash('phone', phone)
                     return res.redirect('/sellerReg')
 
                 }
             } else {
-                saveSeller(username, email, phone, password, User, req, res)
+                saveSeller(username, email, password, User, req, res)
 
             }
         },

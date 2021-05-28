@@ -46,56 +46,97 @@ if (alertMsg) {
 }
 
 //==============================Rating Update======================================
+//this is for show rating star with product rate
+const showIDivList = document.querySelectorAll('#show-i')
+const showInpList = document.querySelectorAll('#showI-input')
 
-const rate_span = document.querySelector('.rate-span');
-const rate_now = document.querySelector('.rate-now');
-const rate = document.querySelector('#rate');
-const rate_form = document.querySelector('#rate-form');
-
-function showHideStar() {
-    if (rate_now.style.display === 'block') {
-        rate_now.style.display = 'none';
-    } else {
-        rate_now.style.display = 'block';
+function ShowRatingFunc(div, rating) {
+    // console.log(div);
+    // console.log(rating);
+    let ratingLen = Math.round(rating);
+    // console.log(ratingLen);
+    let ratingLenFin = ratingLen.toString()
+        // console.log(ratingLenFin);
+    for (let ratingFor = 0; ratingFor < ratingLenFin; ratingFor++) {
+        div.children[ratingFor].classList.remove("far")
+        div.children[ratingFor].classList.add("fas")
     }
 }
 
-rate_span.addEventListener('click', () => {
-    showHideStar()
-})
+for (let showIDivListFor = 0; showIDivListFor < showIDivList.length; showIDivListFor++) {
 
-const ratingStars = [...document.getElementsByClassName("star")];
-const ratingResult = document.querySelector(".result");
+    let div = showIDivList[showIDivListFor]
+    let rating = showInpList[showIDivListFor].name
 
-printRatingResult(ratingResult);
+    ShowRatingFunc(div, rating)
 
-function executeRating(stars, result) {
-    const starClassActive = "rating__star fas fa-star";
-    const starClassUnactive = "rating__star far fa-star";
-    const starsLength = stars.length;
-    let i;
-    stars.map((star) => {
-        star.onclick = () => {
-            i = stars.indexOf(star);
-            rate.setAttribute('value', `${i + 1}`)
-            rate_form.submit();
+}
 
-            if (star.className.indexOf(starClassUnactive) !== -1) {
-                printRatingResult(result, i + 1);
-                for (i; i >= 0; --i) stars[i].className = starClassActive;
-            } else {
-                printRatingResult(result, i);
-                for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+//this is for submit perticular product rating by customer
+const ratingResult = document.querySelector(".rating__result");
+const rate_span = document.querySelectorAll('.rate-span');
+const rate_now = document.querySelectorAll('.rate-now');
+const rate = document.querySelectorAll('#rate');
+const rate_form = document.querySelectorAll('#rate-form');
+
+function showHideStar(ratFor) {
+    if (rate_now[ratFor].style.display === 'block') {
+        rate_now[ratFor].style.display = 'none';
+    } else {
+        rate_now[ratFor].style.display = 'block';
+    }
+}
+
+if (rate_span) {
+
+    for (let ratFor = 0; ratFor < rate_span.length; ratFor++) {
+
+        rate_span[ratFor].addEventListener('click', (e) => {
+            e.preventDefault()
+
+            showHideStar(ratFor)
+
+            const form_i = document.querySelectorAll("#form-i")
+            let subStr = [...form_i[ratFor].children]
+                // ==============================================================
+            printRatingResult(ratingResult);
+
+            function submitRating(stars, result) {
+                const starClassActive = "rating__star fas fa-star";
+                const starClassUnactive = "rating__star far fa-star";
+                const starsLength = stars.length;
+                let i;
+                stars.map((star) => {
+                    star.onclick = () => {
+                        i = stars.indexOf(star);
+                        console.log(i);
+
+                        rate[ratFor].setAttribute('value', `${i + 1}`)
+                            // console.log(rate[ratFor]);
+                        rate_form[ratFor].submit();
+
+                        if (star.className.indexOf(starClassUnactive) !== -1) {
+                            printRatingResult(result, i + 1);
+                            for (i; i >= 0; --i) stars[i].className = starClassActive;
+                        } else {
+                            printRatingResult(result, i);
+                            for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+                        }
+                    };
+                });
             }
-        };
-    });
-}
 
-function printRatingResult(result, num = 0) {
-    result.textContent = `${num}/5`;
-}
+            function printRatingResult(result, num = 0) {
+                result.textContent = `${num}/5`;
+            }
 
-executeRating(ratingStars, ratingResult);
+            submitRating(subStr, ratingResult);
+        })
+    }
+}
 //==============================Rating Update======================================
 
 

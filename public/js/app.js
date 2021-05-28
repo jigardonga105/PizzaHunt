@@ -2286,65 +2286,106 @@ if (alertMsg) {
     alertMsg.remove();
   }, 2000);
 } //==============================Rating Update======================================
+//this is for show rating star with product rate
 
 
-var rate_span = document.querySelector('.rate-span');
-var rate_now = document.querySelector('.rate-now');
-var rate = document.querySelector('#rate');
-var rate_form = document.querySelector('#rate-form');
+var showIDivList = document.querySelectorAll('#show-i');
+var showInpList = document.querySelectorAll('#showI-input');
 
-function showHideStar() {
-  if (rate_now.style.display === 'block') {
-    rate_now.style.display = 'none';
-  } else {
-    rate_now.style.display = 'block';
+function ShowRatingFunc(div, rating) {
+  // console.log(div);
+  // console.log(rating);
+  var ratingLen = Math.round(rating); // console.log(ratingLen);
+
+  var ratingLenFin = ratingLen.toString(); // console.log(ratingLenFin);
+
+  for (var ratingFor = 0; ratingFor < ratingLenFin; ratingFor++) {
+    div.children[ratingFor].classList.remove("far");
+    div.children[ratingFor].classList.add("fas");
   }
 }
 
-rate_span.addEventListener('click', function () {
-  showHideStar();
-});
+for (var showIDivListFor = 0; showIDivListFor < showIDivList.length; showIDivListFor++) {
+  var div = showIDivList[showIDivListFor];
+  var rating = showInpList[showIDivListFor].name;
+  ShowRatingFunc(div, rating);
+} // =================================================================================================
+// =================================================================================================
+// =================================================================================================
+//this is for submit perticular product rating by customer
 
-var ratingStars = _toConsumableArray(document.getElementsByClassName("star"));
 
-var ratingResult = document.querySelector(".result");
-printRatingResult(ratingResult);
+var ratingResult = document.querySelector(".rating__result");
+var rate_span = document.querySelectorAll('.rate-span');
+var rate_now = document.querySelectorAll('.rate-now');
+var rate = document.querySelectorAll('#rate');
+var rate_form = document.querySelectorAll('#rate-form');
 
-function executeRating(stars, result) {
-  var starClassActive = "rating__star fas fa-star";
-  var starClassUnactive = "rating__star far fa-star";
-  var starsLength = stars.length;
-  var i;
-  stars.map(function (star) {
-    star.onclick = function () {
-      i = stars.indexOf(star);
-      rate.setAttribute('value', "".concat(i + 1));
-      rate_form.submit();
+function showHideStar(ratFor) {
+  if (rate_now[ratFor].style.display === 'block') {
+    rate_now[ratFor].style.display = 'none';
+  } else {
+    rate_now[ratFor].style.display = 'block';
+  }
+}
 
-      if (star.className.indexOf(starClassUnactive) !== -1) {
-        printRatingResult(result, i + 1);
+if (rate_span) {
+  var _loop = function _loop(ratFor) {
+    rate_span[ratFor].addEventListener('click', function (e) {
+      e.preventDefault();
+      showHideStar(ratFor);
+      var form_i = document.querySelectorAll("#form-i");
 
-        for (i; i >= 0; --i) {
-          stars[i].className = starClassActive;
-        }
-      } else {
-        printRatingResult(result, i);
+      var subStr = _toConsumableArray(form_i[ratFor].children); // ==============================================================
 
-        for (i; i < starsLength; ++i) {
-          stars[i].className = starClassUnactive;
-        }
+
+      printRatingResult(ratingResult);
+
+      function submitRating(stars, result) {
+        var starClassActive = "rating__star fas fa-star";
+        var starClassUnactive = "rating__star far fa-star";
+        var starsLength = stars.length;
+        var i;
+        stars.map(function (star) {
+          star.onclick = function () {
+            i = stars.indexOf(star);
+            console.log(i);
+            rate[ratFor].setAttribute('value', "".concat(i + 1)); // console.log(rate[ratFor]);
+
+            rate_form[ratFor].submit();
+
+            if (star.className.indexOf(starClassUnactive) !== -1) {
+              printRatingResult(result, i + 1);
+
+              for (i; i >= 0; --i) {
+                stars[i].className = starClassActive;
+              }
+            } else {
+              printRatingResult(result, i);
+
+              for (i; i < starsLength; ++i) {
+                stars[i].className = starClassUnactive;
+              }
+            }
+          };
+        });
       }
-    };
-  });
-}
 
-function printRatingResult(result) {
-  var num = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  result.textContent = "".concat(num, "/5");
-}
+      function printRatingResult(result) {
+        var num = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+        result.textContent = "".concat(num, "/5");
+      }
 
-executeRating(ratingStars, ratingResult); //==============================Rating Update======================================
+      submitRating(subStr, ratingResult);
+    });
+  };
+
+  for (var ratFor = 0; ratFor < rate_span.length; ratFor++) {
+    _loop(ratFor);
+  }
+} //==============================Rating Update======================================
 //Change order status
+
 
 var statuses = document.querySelectorAll('.status_line');
 var hiddenInput = document.querySelector('#hiddenInput');
@@ -2436,7 +2477,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var deleteBtn = document.querySelectorAll(".delete-img-btn");
+var deleteItemBtn = document.querySelectorAll(".delete-img-btn");
 var deleteStrBtn = document.querySelectorAll(".delete-strimg-btn");
 function handleStore() {
   deleteItemImg();
@@ -2495,15 +2536,16 @@ function handleStore() {
           switch (_context.prev = _context.next) {
             case 0:
               //This is for Delete item image
-              if (deleteBtn) {
+              if (deleteItemBtn) {
                 _loop = function _loop(i) {
-                  deleteBtn[i].addEventListener('click', function (e) {
-                    var item = JSON.parse(deleteBtn[i].dataset.item);
+                  deleteItemBtn[i].addEventListener('click', function (e) {
+                    console.log(deleteItemBtn[i]);
+                    var item = JSON.parse(deleteItemBtn[i].dataset.item);
 
                     if (item) {
                       for (var j = 0; j < item.length; j++) {
                         for (var k = 0; k < item[j].image.length; k++) {
-                          if (item[j].image[k]._id === deleteBtn[i].value) {
+                          if (item[j].image[k]._id === deleteItemBtn[i].value) {
                             var confirm = window.confirm('Are you sure you want to delete this image?');
 
                             if (confirm) {
@@ -2519,7 +2561,7 @@ function handleStore() {
                   });
                 };
 
-                for (i = 0; i < deleteBtn.length; i++) {
+                for (i = 0; i < deleteItemBtn.length; i++) {
                   _loop(i);
                 }
               }
