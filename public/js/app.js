@@ -2487,8 +2487,8 @@ function handleStore() {
     reload = location.reload();
   }
 
-  function deleteConfirmStore(imgId) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/deleteImgStore/".concat(imgId)).then(function (res) {
+  function deleteConfirmStore(imgId, strID) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/deleteImgStore/".concat(imgId, "/").concat(strID)).then(function (res) {
       new (noty__WEBPACK_IMPORTED_MODULE_2___default())({
         type: 'success',
         timeout: 1000,
@@ -2603,7 +2603,7 @@ function handleStore() {
 
                             if (confirm) {
                               console.log('ok');
-                              deleteConfirmStore(item[j].image[k]._id);
+                              deleteConfirmStore(item[j].image[k]._id, deleteStrBtn[i].id);
                             } else {
                               console.log('no');
                             }

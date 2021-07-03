@@ -53,7 +53,7 @@ function initRoutes(app) {
     app.get('/seller/storeCust/:si', sellerStoreController().editStore)
     app.post('/seller/updatestore/:storeid', sellerStoreController().updateStore)
     app.post('/store-add-img/:storeid', sellerStoreController().storeAddImg)
-    app.post('/deleteImgStore/:imgid', sellerStoreController().deleteStrImage)
+    app.post('/deleteImgStore/:imgid/:strid', sellerStoreController().deleteStrImage)
 
 
     app.get('/seller/item/:ii', prodController().showItem)

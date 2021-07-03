@@ -13,8 +13,8 @@ export function handleStore() {
         reload = location.reload();
     }
 
-    function deleteConfirmStore(imgId) {
-        axios.post(`/deleteImgStore/${imgId}`)
+    function deleteConfirmStore(imgId, strID) {
+        axios.post(`/deleteImgStore/${imgId}/${strID}`)
             .then(res => {
                     new Noty({
                         type: 'success',
@@ -112,7 +112,7 @@ export function handleStore() {
                                     let confirm = window.confirm('Are you sure you want to delete this image?')
                                     if (confirm) {
                                         console.log('ok');
-                                        deleteConfirmStore(item[j].image[k]._id);
+                                        deleteConfirmStore(item[j].image[k]._id, deleteStrBtn[i].id);
                                     } else {
                                         console.log('no');
                                     }

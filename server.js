@@ -41,7 +41,7 @@ app.use(session({
         mongoUrl: process.env.MONGO_CONNECTION_URL
     }),
     saveUninitialized: false,
-    // cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour 
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour 
 }))
 
 //Passport config

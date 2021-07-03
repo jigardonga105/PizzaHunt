@@ -210,7 +210,7 @@ function storeController() {
 
                             if (result) {
 
-                                const del = await Store.updateOne({}, { $pull: { image: { _id: req.params.imgid } } }, { multi: true })
+                                const del = await Store.updateOne({ _id: req.params.strid }, { $pull: { image: { _id: req.params.imgid } } }, { multi: true })
                                 if (del) {
                                     fs.unlink(`public/uploadedImages/${imageSet[j].image[k].img}`, (err, res) => {
                                         if (err) {
