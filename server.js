@@ -15,7 +15,6 @@ const Emitter = require('events')
 const multer = require("multer");
 
 // Database connection:-
-// const url = 'mongodb://localhost/pizza';
 mongoose.connect(process.env.MONGO_CONNECTION_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,

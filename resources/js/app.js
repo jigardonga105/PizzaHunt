@@ -173,6 +173,7 @@ function updateStatus(order) {
 
 updateStatus(order)
 
+
 initStripe()
 
 handleStore()
